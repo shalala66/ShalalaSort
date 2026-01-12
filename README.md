@@ -21,9 +21,9 @@
 
 Using POD to describe the building and working principle of the sorting algorithm:
 
+1.1) Working with `"zero, positive and negative"` numbers version
 
-1.1) Working with "zero, positive and negative" numbers version
-
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #define arraySize 12
@@ -65,14 +65,17 @@ int main(int argc, char* argv[])
     return EXIT_SUCCESS;
 }
 
+
 Output:
 -------
 4 3 1 -5 0 1 6 -7 5 -1 5 3 
 -7 -5 -1 0 1 1 3 3 4 5 5 6
+```
 
 
-1.2) Working with "zero, positive, negative" numbers without macros declaration
+1.2) Working with `"zero, positive, negative"` numbers without macros declaration
 
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -120,9 +123,10 @@ int main(int argc, char* argv[])
 }
 
 Output:
--------
+-----------
 4 3 1 -5 0 1 6 -7 5 -1 5 3
 -7 -5 -1 0 1 1 3 3 4 5 5 6
+```
 
 
 | Feature                | Evaluation                                                     |
@@ -134,13 +138,14 @@ Output:
 | **In-place?**          | ❌ No – A separate output array is used                        |
 | **Supports negative?** | ✅ Yes – Min value is determined (`arrMinVal`), no offset used |
 
-Stability is thanks to arr[i] == key comparisons proceeding in increasing i, preserving original order.
-Not in-place, though more space-efficient than Counting Sort. Auxiliary space is minimal.
-Time complexity depends on the value range → O(n × k).
+`Stability` is thanks to `arr[i] == key` comparisons proceeding in increasing `i`, preserving original order.
+`Not in-place`, though more `space-efficient` than `Counting Sort`. `Auxiliary space` is minimal.
+`Time complexity` depends on the value range `→ O(n × k)`.
 
 
-2.1) Working with "strings" version
+2.1) Working with `"strings"` version
 
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -189,10 +194,11 @@ Output:
 -------
 s h a l a l a 1 9 6 6
 1 6 6 9 a a a h l l s
+```
 
+2.2) Working with `"strings"` without macros declaration
 
-2.2) Working with "strings" without macros declaration
-
+```c
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -248,9 +254,11 @@ Output:
 -------
 s h a l a l a 1 9 - 1
 - 1 1 9 a a a h l l s
+```
 
+3) `Stability` test using a `struct array`
 
-3) Stability test using a struct array
+```c
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -317,9 +325,10 @@ ID: 4, Val: 3
 ID: 1, Val: 4
 ID: 3, Val: 4
 ID: 6, Val: 4
+```
 
 
-Note: Shalala Sort copies struct elements with equal keys into the output in their original input order, satisfying stability.
+Note: `Shalala Sort` copies struct elements with equal keys into the output in their original input order, satisfying stability.
 
 | Observation                                     | Result |
 | ----------------------------------------------- | ------ |
@@ -329,19 +338,19 @@ Note: Shalala Sort copies struct elements with equal keys into the output in the
 | Is Shalala Sort stable?                         | ✅ Yes |
 
 
-1. Shalala Sort:
+# 1. Shalala Sort:
 
-Working principle:
+## Working principle:
 Avoids counting arrays. Iterates through possible values and scans the input array for matches, appending each to the output.
 
-Time complexity:
-Outer loop: O(K)
-Inner loop: O(N)
-Total: O(N × K)
+## Time complexity:
+Outer loop: `O(K)`
+Inner loop: `O(N)`
+Total: `O(N × K)`
 
-Space complexity:
-Output only: O(N)
-Auxiliary: O(1)
+## Space complexity:
+Output only: `O(N)`
+Auxiliary: `O(1)`
 
 | Feature                   | Evaluation                 |
 | ------------------------- | -------------------------- |
@@ -354,19 +363,19 @@ Auxiliary: O(1)
 
 
 
-2. Counting Sort:
+# 2. Counting Sort:
 
-Working principle:
-Counts occurrences of values (including negatives) and builds the sorted output using a count array, with offset via arr[i] - arrayNegVal.
+## Working principle:
+Counts occurrences of values `(including negatives)` and builds the sorted output using a count array, with offset via `arr[i] - arrayNegVal`.
 
-Time complexity:
-Counting: O(N)
-Output construction: O(K)
-Total: O(N + K)
+## Time complexity:
+Counting: `O(N)`
+Output construction: `O(K)`
+Total: `O(N + K)`
 
-Space complexity:
-Count array: K
-Output array: N
+## Space complexity:
+Count array: `K`
+Output array: `N`
 
 | Feature                   | Evaluation                                        |
 | ------------------------- | ------------------------------------------------- |
@@ -378,7 +387,7 @@ Output array: N
 | **Works with negatives?** | ❌ No (requires offset, prone to crash without it)|
 
 
-Counting Sort uses more memory, particularly for large ranges. Shalala Sort uses less extra memory, only an output array.
+`Counting Sort uses more memory, particularly for large ranges. Shalala Sort uses less extra memory, only an output array`.
 
 | Parameter         | Counting Sort      | Shalala Sort       |
 | ----------------- | ------------------ | ------------------ |
@@ -407,10 +416,10 @@ Counting Sort uses more memory, particularly for large ranges. Shalala Sort uses
 
 
 
-Final Comparison:
+## Final Comparison:
 
-| Feature          | **Shalala Sort**  | **Counting Sort**        |
-| ---------------- | ----------------  | -----------------------  |
+| Feature          | **Shalala Sort**  | **Counting Sort**         |
+| ---------------- | ----------------  | ------------------------  |
 | Time Complexity  | ❌  O(N × K)      | ✅  O(N + K)             |
 | Space Complexity | ✅  O(N)          | ❌  O(N + K)             |
 | Auxiliary Space  | ✅  O(1)          | ❌  O(N + K)             |
@@ -431,7 +440,7 @@ Auxiliary and Total Extra Memory Comparison:
 
 
 
-Let's present Shalala Sort in a comparison table with the most popular sorting algorithms:
+Let's present `Shalala Sort` in a comparison table with the most popular sorting algorithms:
 
 | Sorting Algorithm  | Time Complexity (Best) | Time Complexity (Avg) | Time Complexity (Worst) | Space Complexity | Auxiliary Space | In-place  | Stable  |
 | ------------------ | ---------------------- | --------------------- | ----------------------- | ---------------- | --------------- | --------  | ------  |
